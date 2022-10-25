@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -73,10 +73,17 @@ const Login = () => {
         <Form.Text className="text-danger">error massage</Form.Text>
       </div>
       <div className="d-flex justify-content-between ">
-        <div>
-          <Button variant="primary" type="submit">
-            Login
-          </Button>
+        <div className="d-flex align-items-center">
+          <div className="me-3">
+            <Button className="px-5" variant="primary" type="submit">
+              Login
+            </Button>
+          </div>
+          <div>
+            <p>
+              Don't have a account? <Link to="/register">Register</Link>
+            </p>
+          </div>
         </div>
         <div>
           <Button
