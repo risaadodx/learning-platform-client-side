@@ -3,11 +3,13 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,6 +20,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        form.reset();
+        navigate("/courses");
       })
       .catch((error) => console.error(error));
   };
@@ -25,13 +29,24 @@ const Login = () => {
   const { providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
+  const githubprovider = new GithubAuthProvider();
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate("/courses");
       })
       .catch((error) => console.error(error));
+  };
+  const githubSignIn = () => {
+    providerLogin(githubprovider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/courses");
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <Form onSubmit={handleSubmit} className="mt-5">
@@ -71,7 +86,7 @@ const Login = () => {
           >
             <FaGoogle></FaGoogle> Google Login
           </Button>
-          <Button variant="outline-primary">
+          <Button onClick={githubSignIn} variant="outline-primary">
             <FaGithub></FaGithub> GitHub Login
           </Button>
         </div>

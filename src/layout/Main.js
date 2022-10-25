@@ -9,12 +9,12 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <Container>
+      <Container className="mt-5">
         <Row>
-          <Col>
+          <Col lg="10">
             <Outlet></Outlet>
           </Col>
-          <Col>
+          <Col lg="2">
             <Sidebar></Sidebar>
           </Col>
         </Row>

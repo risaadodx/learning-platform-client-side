@@ -6,6 +6,7 @@ import Blog from "../Pages/Blog/Blog";
 import Faq from "../Pages/Faq/Faq";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
+import Category from "../Pages/Category/Category";
 
 export const routes = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const routes = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses></Courses>,
+      },
+      {
+        path: "/category/:id",
+        element: <Category></Category>,
       },
       {
         path: "/blog",
