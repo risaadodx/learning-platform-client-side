@@ -3,15 +3,20 @@ import logo from "../../../logo.png";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import userEvent from "@testing-library/user-event";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import { Image } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import { FaUser } from "react-icons/fa";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   return (
     <Navbar
       collapseOnSelect
@@ -40,9 +45,11 @@ const Header = () => {
           </Nav>
           <Nav className="al">
             <Nav.Link href="#username">
-              {user.uid ? (
+              {user?.uid ? (
                 <>
-                  <button>Log Out</button>
+                  <Button onClick={handleLogOut} variant="dark">
+                    Log Out
+                  </Button>
                   <span>{user?.displayName}</span>
                 </>
               ) : (
@@ -53,11 +60,11 @@ const Header = () => {
               )}
             </Nav.Link>
             <Nav.Link eventKey={2} href="#userimage">
-              {user.photoURL ? (
+              {user?.photoURL ? (
                 <Image
                   style={{ height: "30px" }}
                   roundedCircle
-                  src={user.photoURL}
+                  src={user?.photoURL}
                 ></Image>
               ) : (
                 <FaUser></FaUser>
