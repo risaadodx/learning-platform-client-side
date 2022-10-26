@@ -9,16 +9,11 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
+
       <Container className="mt-5">
-        <Row>
-          <Col lg="10">
-            <Outlet></Outlet>
-          </Col>
-          <Col lg="2">
-            <Sidebar></Sidebar>
-          </Col>
-        </Row>
+        <Outlet></Outlet>
       </Container>
+
       <Footer></Footer>
     </div>
   );

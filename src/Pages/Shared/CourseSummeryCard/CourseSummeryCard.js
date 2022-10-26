@@ -17,18 +17,16 @@ const CourseSummeryCard = ({ course }) => {
     details,
     thumbnail_url,
     author,
-    image_url,
-    requirements,
   } = course;
   return (
     <Col>
       <Card className=" shadow  ">
         <Card.Img
-          style={{ height: "300px" }}
+          style={{ height: "260px" }}
           variant="top"
           src={thumbnail_url}
         />
-        <Card.Body className="px-5 ">
+        <Card.Body className="px-4 ">
           <Card.Text className="d-flex justify-content-between  ">
             <div className=" border border-2 rounded-pill px-4">
               <span className="fw-bold">{duration} hour</span>

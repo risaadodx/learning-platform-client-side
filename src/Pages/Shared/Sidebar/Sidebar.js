@@ -13,8 +13,10 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Categories</h1>
+    <div className=" border rounded px-3 shadow">
+      <h3 className="text-center mb-5 mt-2 border rounded-pill py-2">
+        Categories
+      </h3>
       <div>
         {categories.map((category) => (
           <p key={category.id}>

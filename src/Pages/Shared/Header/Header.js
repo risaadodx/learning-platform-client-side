@@ -29,22 +29,26 @@ const Header = () => {
       className="py-4 shadow"
     >
       <Container>
-        <Navbar.Brand href="#home">
-          <img
-            src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-            alt="Gdemy logo"
-          />
+        <Navbar.Brand>
+          <Link to="/">
+            <img
+              src={logo}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="Gdemy logo"
+            />
+          </Link>
         </Navbar.Brand>
         <Navbar.Brand>
-          <Link to="/">Gdemy</Link>
+          <Link className="text-decoration-none text-success fw-bold" to="/">
+            Gdemy
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Courses</Nav.Link>
+            <Link to="/courses">Courses</Link>
             <Nav.Link href="#pricing">Blog</Nav.Link>
             <Nav.Link href="#pricing">Faq.</Nav.Link>
           </Nav>

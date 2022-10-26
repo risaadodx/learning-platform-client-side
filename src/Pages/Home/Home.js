@@ -6,7 +6,7 @@ import CourseSummeryCard from "../Shared/CourseSummeryCard/CourseSummeryCard";
 const Home = () => {
   const AllCourse = useLoaderData();
   return (
-    <Row md={2} className="g-4">
+    <Row md={3} className="g-4 px-3">
       {AllCourse.map((course) => (
         <CourseSummeryCard key={course._id} course={course}></CourseSummeryCard>
       ))}
