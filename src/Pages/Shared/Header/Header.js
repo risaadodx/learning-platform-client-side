@@ -38,7 +38,9 @@ const Header = () => {
             alt="Gdemy logo"
           />
         </Navbar.Brand>
-        <Navbar.Brand href="#home">Gdemy</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">Gdemy</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
