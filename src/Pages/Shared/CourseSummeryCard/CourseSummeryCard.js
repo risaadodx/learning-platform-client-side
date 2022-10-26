@@ -2,6 +2,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import Image from "react-bootstrap/Image";
 
 const CourseSummeryCard = ({ course }) => {
   const {
@@ -19,7 +21,11 @@ const CourseSummeryCard = ({ course }) => {
   return (
     <Card>
       <Card.Img variant="top" src={thumbnail_url} />
-      <Card.Body>
+      <Card.Body className="px-5">
+        <Card.Text className="text-end ">
+          <FaStar className="text-warning me-2"></FaStar>
+          {rating}
+        </Card.Text>
         <Card.Title>{title}</Card.Title>
         <Card.Text>
           {details.length > 150 ? (
@@ -28,9 +34,20 @@ const CourseSummeryCard = ({ course }) => {
             <p>{details}</p>
           )}
         </Card.Text>
-        <Link to={`/course/${_id}`}>
-          <Button variant="primary">Know Details</Button>
-        </Link>
+        <div className="d-flex align-items-center">
+          <Image
+            style={{ width: "50px" }}
+            variant="top"
+            roundedCircle
+            src={author.img}
+          ></Image>
+          <h5 className="ms-3">{author.name}</h5>
+        </div>
+        <div className="mt-4">
+          <Link to={`/course/${_id}`}>
+            <Button variant="primary">Know Details</Button>
+          </Link>
+        </div>
       </Card.Body>
     </Card>
   );
