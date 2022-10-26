@@ -8,6 +8,7 @@ import Faq from "../Pages/Faq/Faq";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import Category from "../Pages/Category/Category";
+import NotFound from "../Pages/404/NotFound";
 
 export const routes = createBrowserRouter([
   {
@@ -53,5 +54,9 @@ export const routes = createBrowserRouter([
         element: <Register></Register>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);
