@@ -20,24 +20,34 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/course"),
+        loader: () =>
+          fetch(
+            "https://b610-lerning-platform-server-side-risaadodx.vercel.app/course"
+          ),
       },
       {
         path: "/course/:id",
         element: <Course></Course>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/course/${params.id}`),
+          fetch(
+            `https://b610-lerning-platform-server-side-risaadodx.vercel.app/course/${params.id}`
+          ),
       },
       {
         path: "/courses",
         element: <Courses></Courses>,
-        loader: () => fetch("http://localhost:5000/course"),
+        loader: () =>
+          fetch(
+            "https://b610-lerning-platform-server-side-risaadodx.vercel.app/course"
+          ),
       },
       {
         path: "/category/:id",
         element: <Category></Category>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://b610-lerning-platform-server-side-risaadodx.vercel.app/category/${params.id}`
+          ),
       },
       {
         path: "/blog",
