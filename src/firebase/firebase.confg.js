@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBxb1_VvDA3rKEaiUUKV-6wA0AeVjnCxj4",
-  authDomain: "gdemy-learning-platform.firebaseapp.com",
+  authDomain: process.env.REACT_APP_authDomain,
   projectId: "gdemy-learning-platform",
   storageBucket: "gdemy-learning-platform.appspot.com",
   messagingSenderId: "444255441788",

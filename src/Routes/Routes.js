@@ -9,6 +9,8 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import Category from "../Pages/Category/Category";
 import NotFound from "../Pages/404/NotFound";
+import Checkout from "../Checkout/Checkout";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const routes = createBrowserRouter([
       {
         path: "/faq",
         element: <Faq></Faq>,
+      },
+      {
+        path: "/checkout",
+        element: (
+          <PrivateRoute>
+            <Checkout></Checkout>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

@@ -5,11 +5,16 @@ import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,9 +26,13 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         form.reset();
-        navigate("/courses");
+        setError("");
+        navigate(from, { replace: true });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
   };
 
   const { providerLogin } = useContext(AuthContext);
@@ -35,21 +44,23 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/courses");
+        navigate(from, { replace: true });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+      });
   };
   const githubSignIn = () => {
     providerLogin(githubprovider)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/courses");
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
   return (
-    <Form onSubmit={handleSubmit} className="mt-5">
+    <Form onSubmit={handleSubmit} className="mt-5 px-lg-5 mx-auto">
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
@@ -70,7 +81,7 @@ const Login = () => {
         />
       </Form.Group>
       <div className="mb-4">
-        <Form.Text className="text-danger">error massage</Form.Text>
+        <Form.Text className="text-danger">{error}</Form.Text>
       </div>
       <div className="d-flex justify-content-between ">
         <div className="d-flex align-items-center">

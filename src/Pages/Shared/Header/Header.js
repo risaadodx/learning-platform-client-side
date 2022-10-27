@@ -48,9 +48,15 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/courses">Courses</Link>
-            <Nav.Link href="#pricing">Blog</Nav.Link>
-            <Nav.Link href="#pricing">Faq.</Nav.Link>
+            <Link className="text-decoration-none me-2" to="/courses">
+              Courses
+            </Link>
+            <Link className="text-decoration-none me-2 " to="/blog">
+              Blog
+            </Link>
+            <Link className="text-decoration-none me-2" to="/faq">
+              Faq.
+            </Link>
           </Nav>
           <Nav className="al">
             <Nav.Link href="#username">
@@ -59,13 +65,20 @@ const Header = () => {
                   <Button onClick={handleLogOut} variant="dark">
                     Log Out
                   </Button>
-                  <span>{user?.displayName}</span>
                 </>
               ) : (
-                <>
-                  <Link to="/login">Login</Link>
-                  <Link to="/register">SignUp</Link>
-                </>
+                <div className="d-lg-flex">
+                  <div>
+                    <Link className="text-decoration-none me-3" to="/login">
+                      Login
+                    </Link>
+                  </div>
+                  <div>
+                    <Link className="text-decoration-none me-3" to="/register">
+                      SignUp
+                    </Link>
+                  </div>
+                </div>
               )}
             </Nav.Link>
             <Nav.Link eventKey={2} href="#userimage">
@@ -74,6 +87,7 @@ const Header = () => {
                   style={{ height: "30px" }}
                   roundedCircle
                   src={user?.photoURL}
+                  title={user.displayName}
                 ></Image>
               ) : (
                 <FaUser></FaUser>

@@ -3,25 +3,33 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Register = () => {
+  const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const name = form.name.value;
+    const displayName = form.name.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    console.log(displayName, email, password);
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
         form.reset();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+      });
   };
 
   return (
@@ -32,6 +40,15 @@ const Register = () => {
           name="name"
           type="text"
           placeholder="Enter Name"
+          required
+        />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicPhotoURL">
+        <Form.Label>photoURL</Form.Label>
+        <Form.Control
+          name="photoURL"
+          type="text"
+          placeholder="Enter photoURL"
           required
         />
       </Form.Group>
@@ -55,11 +72,20 @@ const Register = () => {
         />
       </Form.Group>
       <div className="mb-4">
-        <Form.Text className="text-danger">error massage</Form.Text>
+        <Form.Text className="text-danger">{error}</Form.Text>
       </div>
-      <Button variant="primary" type="submit">
-        Register
-      </Button>
+      <div className="d-flex align-items-center">
+        <div className="me-3">
+          <Button className="px-5" variant="primary" type="submit">
+            Register
+          </Button>
+        </div>
+        <div>
+          <p>
+            Do you have a account? <Link to="/login">Log In</Link>
+          </p>
+        </div>
+      </div>
     </Form>
   );
 };
