@@ -54,12 +54,14 @@ const CourseSummeryCard = ({ course }) => {
             ></Image>
             <span className="ms-3 fw-bold">{author.name}</span>
           </div>
-          <div className="mt-4 d-flex justify-content-between align-items-center">
+          <div className="mt-4 md:d-flex justify-content-between align-items-center">
             <Link to={`/course/${_id}`}>
-              <Button variant="primary">Know Details</Button>
+              <Button className="w-100" variant="primary">
+                Know Details
+              </Button>
             </Link>
-            <div className=" border border-2 rounded-pill px-4 py-2">
-              <span className="fw-bold">{badge}</span>
+            <div className=" border border-2 rounded-pill px-4 py-2 mt-2 text-center">
+              <span className="fw-bold fs-6 ">#{badge}</span>
             </div>
           </div>
         </Card.Body>
